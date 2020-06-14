@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Limitar numero caracteres</title>
+</head>
+<body>
+
+<script>
+
+function limita(maximoCaracteres) {
+
+	var elemento = document.getElementById("texto");
+	if(elemento.value.length >= maximoCaracteres ) {
+		return false;
+	}
+	else {
+		return true;
+	}
+}
+
+//CREAR LABEL PARA MOSTRAR CUANTOS CARACTERES TE QUEDAN
+var muestraMaximoCaracteres = document.createElement('label');
+muestraMaximoCaracteres.innerText = 'Maximo 100 caracteres\n';
+document.body.appendChild(muestraMaximoCaracteres);
+
+function validacion(maximoCaracteres){
+	var elemento = document.getElementById('texto');
+	if(elemento.value.length >= maximoCaracteres){
+		muestraMaximoCaracteres.innerText = 'Maximo '+maximoCaracteres+' caracteres';
+	}else{
+		muestraMaximoCaracteres.innerText = 'Puedes escribir ' +(maximoCaracteres-elemento.value.length)+' caracteres mas\n';
+	}
+
+}
+
+//GUIA
+document.onkeydown = function(elEvento){
+	var evento = elEvento;
+	console.log(evento.keyCode);
+}
+</script>
+
+<textarea id="texto" onkeypress="return limita(100);" onkeyup="return validacion(100)"></textarea>
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Ventas empresa</title>
+</head>
+<body>
+
+
+	<script type="text/javascript">
+		
+		//N VENDEDORES 5
+		//PEDIR M AÑOS FUNCIONANDO
+		//RETORNAR TOTAL VENTAS CADA VENDEDOR EN LOS M AÑOS POR UN METODO
+		//RETORNAR TOTAL VENTAS EMPRESA M AÑOS POR UN METODO
+
+		//PEDIMOS EL NUMERO DE AÑOS QUE LLEVA LA EMPRESA FUNCIONANDO
+		const mAños = parseInt(prompt('Numero de años funcionando la empresa', 'ej: 10'));
+
+		//CREAMOS UN ARREGLO QUE CONTENGA LAS VENTAS DE LOS VENDEDORES
+		let ventas = new Array();
+
+		//USAMOS UN FOR PARA ITERAR EL NUMERO DE EMPLEADOS DE LA EMPRESA 
+		//****( 5 )
+		for( i=0 ; i<5 ; i++ ){
+
+			ventas[i] = 0;//INICIALIZO EN 0 LA POSICION i DONDE SE ENCUENTRA LA ITERACION PARA
+			//POSTERIORMENTE MODIFICARLA SIN PROBLEMAS
+
+			//ITERAMOS CON UN FOR EL NUMERO DE AÑOS QUE LLEVA FUNCIONANDO LA EMPRESA 
+			//****(por cada empleado linea 13)
+			for(j=0; j<mAños;j++){
+
+				//CREAMOS UN ESPACIO DE MEMORIA CON LA VARIABLE VENDIDO Y LE ASIGNAMOS EL VALOR
+				//QUE INGRESE EL USUARIO EN MILES DE PESOS SIN COMAS NI PUNTOS
+				let vendido = parseInt(prompt(`digite la venta del año ${j+1} del empleado #${i+1} en miles de pesos sin comas (,) ni puntos (.)`, "ej: 1000000"));
+
+				ventas[i] += vendido;//SUMAMOS LO OBTENIDO POR TECLADO DEL USUARIO A LA POSICION
+				//DEL VENDEDOR EN LA QUE NOS ENCONTRAMOS
+				//****(usar el "+=" es igual que hacer ventas[i] = ventas[i]+vendido)
+			}
+		}
+
+		//CREAMOS UN METODO O FUNCION PARA MOSTRAR EL TOTAL VENDIDO POR CADA VENDEDOR
+		function vVendedores(ventas){
+
+			//RECORREMOS EL ARREGLO PASADO POR PARAMETRO CON UN FOR IN 
+			//****(se puede hacer con un for comun y corriente)
+			for(i in ventas){
+
+				//IMPRIMIMOS POR CONSOLA EL RESULTADO POR CADA VENDEDOR
+				//****(${mAños} es numero de años|| #${+i+1} es el vendededor
+				//usamos el +i para convertir a entero y +1 para sumarle uno, recordemos
+				//las posiciones de los arrays comienzan desde el 0 . . . 
+				//${ventas[i]} es el total sumado de ventas del vendedor)
+				console.log(`El total vendido en ${mAños} año/s por el vendedor #${+i+1} es ${ventas[i]}`);
+				document.write(`El total vendido en ${mAños} año/s por el vendedor #${+i+1} es ${ventas[i]}<br>`);
+			}
+		}
+
+		//CREAMOS UN METODO O FUNCION PARA MOSTRAR EL TOTAL VENDIDO POR LA EMPRESA
+		function totalVentas(ventas){
+
+			let resultado = 0;//CREAMOS UNA VARIABLE TIPO Y LA INICIALIZAMOS EN 0
+
+			//ITERAMOS EL ARREGLO PASADO POR PARAMETRO
+			for(i in ventas){
+
+				resultado+= ventas[i];//SUMAMOS TODOS LOS RESULTADOS DE TODAS LAS POSICIONES
+			}
+
+			//IMPRIMIMOS EL TOTAL VENDIDO POR LA EMPRESA
+			console.log(`El total vendido en la empresa en los ultimos ${mAños} años son ${resultado}`);
+			document.write(`<br>El total vendido en la empresa en los ultimos ${mAños} años son ${resultado}`);
+		}
+
+		//AHORA SOLO QUEDA LLAMAR A LAS FUNCIONES Y LISTO
+		vVendedores(ventas);
+		totalVentas(ventas);
+
+	</script>
+</body>
+</html>

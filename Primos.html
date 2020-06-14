@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<title>Numeros Primos</title>
+	<meta charset="utf-8">
+</head>
+<body>
+
+<h1>Mira la consola</h1>
+
+<script type="text/javascript">
+
+let num = parseInt(prompt('ingrese numero menor a 999999','4020'));
+
+const primo = function(num){
+	let es = true;
+	let contador = 0;
+	if(num%2==0&&num != 2){
+			es=false; 
+		}else{
+			for(let i=((num-1)/2); i >=2 ; i--){
+				contador++;
+				if(num%i==0){
+					es = false;
+					break;
+					}
+				}
+			}
+	if(es){
+		console.log(`Se hicieron ${contador} iteraciones y ${num} es primo`);
+	}else{ 
+		console.log(`Se hicieron ${contador} iteraciones y ${num} no es primo`);
+}
+}
+
+primo(num);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Calendario</title>
+<style type="text/css">@import url("jscalendar-1.0/calendar-blue.css");
+  .date{
+    width: 200px;
+  }
+</style>
+<script type="text/javascript" src="jscalendar-1.0/calendar.js" ></script>
+<script type="text/javascript" src="jscalendar-1.0/lang/calendar-es.js"></script>
+<script type="text/javascript" src="jscalendar-1.0/calendar-setup.js"></script>
+</head>
+<body>
+<span id="fecha">Pincha aqui</span>
+<input type="hidden" id="fecha2"/>
+<script type="text/javascript">
+window.onload = function() {
+  Calendar.setup({
+    inputField: "fecha2",
+    ifFormat:   "%d/%m/%Y",
+    weekNumbers: false,
+    displayArea: "fecha",
+    daFormat: "%A, %d de %B de %Y"
+  });
+}
+setInterval(function(){
+  var lab = document.getElementById('fecha2');
+  console.log(lab.value);},3000);
+
+</script>
+  
+</body>
+</html>

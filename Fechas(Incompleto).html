@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Fechas</title>
+</head>
+<body>
+	<!-- DIGA CUANTOS DIAS DE DIFERENCIA HAY ENTRE LA FECHA INGRESADA Y LA FECHA ACTUAL -->
+	<script>
+	var date = new Date();
+	var dayOfMonth = date.getDate();
+	var month = date.getMonth()+1;
+	if(date.getMonth()<=9){month = '0' + month};
+	var year = date.getFullYear();
+	var date2 = prompt('Introdusca una fecha anterior a la fecha actual en el siguiente formato: mm/dd/aaaa Ej: '+ dayOfMonth+'/'+month+'/'+year);
+	var newDate = date2.split('/');
+	function incorrectDate(){
+				date2 = prompt('Escriba la fecha en el formato correcto!  \nformato: mm/dd/aaaa Ej: '+ dayOfMonth+'/'+month+'/'+year);
+				newDate = date2.split('/');
+			}
+	while(isNaN(parseInt(newDate.join('')))){
+			incorrectDate();
+	};
+	if(/^([1-9]|[12][0-9]|3[01])(0[1-9]|1[0-2])(\d{4})$/.test(newDate.join(''))){
+		console.log('funciona');
+	}else{
+		alert('escribiste una fecha incorrecta, recarga la pagina por favor porque soy manco');
+	}
+	function daysAfter(time){
+
+	}
+	</script>
+	
+</body>
+</html>

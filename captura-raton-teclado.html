@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Ejercicio 15 - Informaci�n sobre eventos</title>
+<style type="text/css">
+body {font-family: arial, helvetica;}
+#info {width:160px; border:thin solid silver; padding:.5em; position:fixed;}
+#info h1 {margin: 0;}
+</style>
+<script type="text/javascript">
+function muestraInformacion(mensaje) {
+
+  document.getElementById("info").innerHTML = '<h1>'+mensaje[0]+'</h1>';
+  for(var i=1; i<mensaje.length; i++) {
+    document.getElementById("info").innerHTML += '<p>'+mensaje[i]+'</p>';
+  }
+}
+//FUNCION PARA OBTENER LA POSICION DEL RATON CON RESPECTO AL NAVEGADOR Y A LA PAGINA O DE LAS TECLAS QUE SE PRESIONEN
+function eventos(evento){
+
+// SE CREA UN ARRAY PARA CONTENER EL MENSAJE MOSTRADO EN INFO
+	var mensaje = [];
+
+// SE VALIDA EL TIPO DE EVENTO
+switch(evento.type){
+
+	case 'click':
+
+	// SE LLENA EL ARRAY DE MENSAJE CON LA INFORMACION OBTENIDA DEL RATON
+	mensaje[0] = 'Raton';
+	mensaje[1] = 'Navegador ['+ evento.clientX + ',' + evento.clientY + ']';
+	mensaje[2] = 'Pagina [' + evento.pageX + ',' + evento.pageY + ']';
+
+	// SE CAMBIA EL COLOR DE FONDO DEL ELEMENTO INFO A AMARILLO
+	document.getElementById('info').style.background = '#FFFFCC';
+
+	// SE ENVIA EL MENSAJE ALMACENADO A LA FUNCION PARA QUE LO MUESTRE
+	muestraInformacion(mensaje);
+
+	break;
+
+	case 'keypress':
+
+	// SE LLENA EL ARRAY DE MENSAJE CON LA INFORMACION OBTENIDA DEL TECLADO
+	mensaje[0] = 'Teclado';
+	mensaje[1] = 'Caracter ['+String.fromCharCode(evento.charCode)+']';
+	mensaje[2] = 'Codigo ['+evento.keyCode+']';
+
+	// SE CAMBIA EL COLOR DE FONDO DEL ELEMENTO INFO A AZUL
+	document.getElementById('info').style.background = '#CCE6FF';
+
+	// SE ENVIA EL MENSAJE ALMACENADO A LA FUNCION PARA QUE LO MUESTRE
+	muestraInformacion(mensaje);
+
+	break;
+
+	case 'mousemove':
+
+	// SE CAMBIA EL COLOR DE FONDO DEL ELEMENTO INFO A BLANCO
+	document.getElementById('info').style.background = '#ffffff';
+
+	break;
+}
+
+}
+//SE OBTIENE EL EVENTO DEL RATON 0 TECLAS
+document.onclick = eventos;
+document.onkeypress = eventos;
+document.onmousemove = eventos;
+
+</script>
+</head>
+<body>
+<div id="info"></div>
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+</body>
+</html>

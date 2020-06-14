@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    body{
+      font-family: Arial, Helvetica;
+      max-width: 1000px;
+    }
+      .caja{
+        width: 100%;
+        font-size: 40px;
+        text-align: center;
+      }
+      .boton{
+        width:100%;
+        padding:15px;
+        border-radius: 3px;
+        background: #7b89a0;
+        font-size: 20px;
+      }
+  </style>
+</head>
+<body>
+  <div class="caja" id="fecha"></div>
+  <button class="boton" id='hora1'>Formato 12 horas</button>
+  <button class="boton" id='hora2'>Formato 24 horas</button>
+
+  <script>
+    var formato = 24;
+
+    //Intervalo de actualización cada 0.5 segs
+    window.onload = function(){setInterval(fecha,500);}
+
+    //Formatear la hora para 12 horas o 24 horas de manera correcta
+    function formatoFecha(formatoHora){
+      if(formatoHora == 12){
+        if(horas>12){horas= horas-12; sufijoHora = ' PM';}
+        if(horas<10 && horas != 00){horas = '0'+horas;}
+        document.getElementById("fecha").innerHTML = horas + ':' +minutos+':'+segundos+sufijoHora;
+      }else{
+              document.getElementById("fecha").innerHTML = horas + ':' +minutos+':'+segundos;
+      }
+    }
+
+    botones = document.getElementsByTagName('button');
+    botones[0].addEventListener("click",fecha);
+    botones[1].addEventListener("click",fecha);
+
+    //Obtener los datos necesarios de la funcion interna Date()
+    function fecha(){
+      fechaHora = new Date();
+      horas = fechaHora.getHours(), minutos = fechaHora.getMinutes(), segundos = fechaHora.getSeconds(), sufijoHora = ' AM';
+      if(horas<10){horas= '0'+horas;}
+      if(minutos<10){minutos= '0'+minutos;}
+      if(segundos<10){segundos= '0'+segundos;}
+
+      switch(this.id){
+        case "hora1":
+        formato = 12;
+        formatoFecha(formato);
+        break;
+        case "hora2":
+        formato = 24;
+        formatoFecha(formato);
+        break;
+        default:
+        formatoFecha(formato);
+        break;
+      }
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Formulario</title>
+</head>
+<body>
+	<form action="" id='formulario'>
+		<input type="submit" id="enviar" value="Enviar">
+		<p>&nbsp;</p>
+	</form>
+		<script>
+
+		document.addEventListener(onload,cargarElementos());
+
+		function cargarElementos(){
+			let campos = new Array();
+			i = 0;
+			// PEDIR CAMPOS A CREAR AL USER
+			campos[i] = prompt('Si desea añadir un campo al formulario entonces escribalo y presione ok, de lo contrario presione cancelar','Campo #1');
+			valid = null;
+			if(campos[i]!= null){
+				do{
+					++i;
+					campos[i] = prompt('Desa añadir otro campo? pulse ok para añadir cancelar para salirse');
+					valid = campos[i];
+				}while(valid != null);
+			}
+			// ELIMINAR EL ULTIMO ELEMENTO NULO DEL ARRAY
+			campos.pop()
+
+			// PASAR CAMPOS A LA FUNCION PARA CREARLOS
+			crearElementos(campos);
+		}
+
+
+		function crearElementos(array){
+			let campos = array;
+			form = document.getElementById('formulario');
+			submit = document.getElementById('enviar');
+			//CREAR Y AÑADIR
+			for(i in campos){
+
+				// CREAR ETIQUETA DE TEXTO
+				label = document.createElement('label');
+				label.innerText = campos[i]+':    ';
+				// ASOCIAR LA ETIQUETA DE TEXTO CON EL CAMPO
+				label.setAttribute('for',campos[i]);
+
+				// CREAR CAMPO DE TEXTO
+				input = document.createElement('input');
+				input.type = 'text';
+				input.setAttribute('placeholder',campos[i]);
+				input.id = campos[i];
+
+				// AÑADIR SALTO DE LINEA
+				espaciado = document.createElement('br');
+
+				//INGRESAR LOS NODOS CREADOS DENTRO DEL FORMULARIO
+				form.appendChild(label);
+				form.appendChild(input);
+				form.appendChild(espaciado);
+				form.appendChild(espaciado.cloneNode(true));
+			}
+			//MOVER EL BOTON SUBMIT AL FINAL TODOS LOS ELEMENTOS CREADOS ANTERIORMENTE
+			form.childNodes[form.childNodes.length-1].insertAdjacentElement("afterend",submit);
+		}
+	</script>
+</body>
+</html>

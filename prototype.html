@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>objetos</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<h1>Mira la consola</h1>
+<script type="text/javascript">
+	
+	const Bicicleta = function(nRuedas,rin,color){
+		this.nRuedas = nRuedas;
+		this.noRin = rin;
+		this.color = color;
+		this.suciedad = false;
+		this.rodar = ()=> {console.log(`Tu bici esta rodando en ${this.nRuedas} ruedas con un rin #${this.noRin} y es de color ${this.color}`);
+			this.suciedad = true;}
+		return 'creaste una bici con los datos asignados';
+	}
+
+	Bicicleta.prototype.estado = function(){
+		if(this.suciedad == true)console.log('debes mandarla a lavar');
+		if(this.suciedad == false)console.log('esta limpia, puedes sacarla');
+	}
+
+	Bicicleta.prototype.limpiar = function(){
+		if(this.suciedad == true){
+			console.log('tu bici ahora esta limpia');
+			this.suciedad = false;
+		}
+	}
+
+	var miBici = new Bicicleta(2,29,'negro');
+
+	miBici.rodar();
+	miBici.estado();
+	miBici.limpiar();
+	miBici.estado();
+	miBici.rodar();
+
+</script>
+</body>
+</html>
